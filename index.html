@@ -26,3 +26,37 @@ if (curl_errno($ch)) {
 curl_close($ch);
 return $result;
 }
+
+function combi($set="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",$x){
+$array_elems_to_combine = str_split($set);
+$size = $x;
+$current_set = array('');
+for ($i = 0; $i < $size; $i++) {
+    $tmp_set = array();
+    foreach ($current_set as $curr_elem) {
+        foreach ($array_elems_to_combine as $new_elem) {
+            $tmp_set[] = $curr_elem . $new_elem;
+        }
+    }
+    $current_set = $tmp_set;
+}
+return $current_set;
+}
+
+function rando($length=16){
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+function uuid() {
+    $data = PHP_MAJOR_VERSION < 7 ? openssl_random_pseudo_bytes(16) : random_bytes(16);
+    $data[6] = chr(ord($data[6]) & 0x0f | 0x40);    // Set version to 0100
+    $data[8] = chr(ord($data[8]) & 0x3f | 0x80);    // Set bits 6-7 to 10
+    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+}
+                       
+                        
