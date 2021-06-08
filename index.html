@@ -60,3 +60,9 @@ function uuid() {
 }
                        
                         
+function pan($ln){
+$pan = chr(mt_rand(65,75)).chr(mt_rand(65,91)).chr(mt_rand(65,91))."P".$ln[0].mt_rand(1000,9999).chr(mt_rand(65,75));
+if(preg_match("/[A-Z]{3}P$ln[0][0-9]{4}[A-Z]{1}/",$pan)){
+    return $pan;
+    }
+}
