@@ -66,3 +66,16 @@ if(preg_match("/[A-Z]{3}P$ln[0][0-9]{4}[A-Z]{1}/",$pan)){
     return $pan;
     }
 }
+
+
+function getline($filen,$line) {
+$file = new SplFileObject($filen);
+if (!$file->eof()) {
+     $file->seek($line-1);
+     if($file->valid()){
+     $contents = trim($file->current());
+     return $contents; 
+     }
+     else echo "EOF\n";
+}
+}
