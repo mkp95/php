@@ -2,7 +2,7 @@
 function http($url,$head,$data="",$method,$h=0){
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method)
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 if($data!=""){
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
