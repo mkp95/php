@@ -72,6 +72,14 @@ function rando($length=16){
     }
     return $randomString;
 }
+
+function rand_hex($length=16){
+$bin = openssl_random_pseudo_bytes($length/2);
+$hex = md5($bin);
+$rand = substr($hex,1,$length);
+return $rand;
+}
+
 function uuid() {
     $data = PHP_MAJOR_VERSION < 7 ? openssl_random_pseudo_bytes(16) : random_bytes(16);
     $data[6] = chr(ord($data[6]) & 0x0f | 0x40);    // Set version to 0100
